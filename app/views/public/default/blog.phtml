@@ -1,0 +1,86 @@
+<section class="latest-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Blog</h2>
+                    <p>
+                        <?php
+                        if (isset($v_blogs)) {
+                            if (empty($v_blogs)) {
+                        ?>
+                    <div class="alert alert-danger">
+                        <strong><span class="fa fa-info"></span></strong> Até o momento não temos sem novidades.
+                    </div>
+            <?php
+                            }
+                        }
+            ?>
+
+            </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+            <?php
+            if (isset($v_blogs)) {
+                $cont = 0;
+                foreach ($v_blogs as $blog) {
+                    ++$cont;
+                    if (($cont) == 1) {
+            ?>
+                        <div class="col-lg-6">
+                            <?php
+                            if (!$blog->getFoto() == null) {
+                            ?>
+                                <div class="latest-item set-bg large-item" data-setbg="<?= Geral::DIR_IMG_BLOG . $blog->getFoto() ?>">
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="latest-item set-bg large-item" data-setbg="<?= Geral::DIR_IMG_BLOG_PADRAO ?>">
+                                    <?php
+                                }
+                                    ?>
+                                    <div class="li-tag">Blog</div>
+                                    <div class="li-text">
+                                        <h4 style="background-color: #000000; padding:10px;"><a href="/Index/ler/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>"><?= $blog->getTitulo() ?></a></h4>
+                                        <span><i class="fa fa-clock-o"></i> <?= $blog->getData() ?></span>
+                                    </div>
+                                    </div>
+                                </div>
+                            <?php
+                        } else {
+                            ?>
+                                <div class="col-lg-6">
+                                    <?php
+                                    if (!$blog->getFoto() == null) {
+                                    ?>
+                                        <div class="latest-item set-bg" data-setbg="<?= Geral::DIR_IMG_BLOG . $blog->getFoto() ?>">
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <div class="latest-item set-bg" data-setbg="<?= Geral::DIR_IMG_BLOG_PADRAO ?>">
+                                            <?php
+                                        }
+                                            ?>
+                                            <div class="li-tag">Blog</div>
+                                            <div class="li-text">
+                                                <h5 style="background-color: #000000; padding:10px;"><a href="/Index/ler/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>"><?= $blog->getTitulo() ?></a></h5>
+                                                <span><i class="fa fa-clock-o"></i> <?= $blog->getData() ?></span>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                                    ?>
+
+                            <?php
+                        }
+                    } ?>
+
+
+                                </div>
+                        </div>
+</section>

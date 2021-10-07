@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <?php
+    include_once 'app/views/public/default/head.phtml';
+    ?>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <?php
+    include_once 'app/views/public/default/header.phtml';
+    ?>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+
+    <!-- Hero Section End -->
+
+    <!-- Counter Section Begin -->
+    <section class="counter-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="counter-text">
+                        <span>FestiAngola 2021</span>
+                        <h3>Festival Nacional <br />da Canção Patriótica</h3>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="cd-timer" id="countdown">
+                        <div class="cd-item">
+                            <span>40</span>
+                            <p>Dias</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Horas</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>46</span>
+                            <p>Minutos</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>32</span>
+                            <p>Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Home About Section Begin -->
+    <section class="home-about-section spad">
+        <div class="container">
+            <div class="row">
+                <!--
+                <div class="col-lg-2">
+                    <div class="ha-pic">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/i-about.jpg" alt="">
+                    </div>
+                </div>
+                -->
+                <div class="col-lg-12">
+                    <div class="ha-text">
+                        <h2>Candidatos apurados</h2>
+                        <p>Os candidatos na lista abaixo foram apurados para o Festival Nacional da Canção Patriótica - FestiAngola 2021</p>
+                        
+                        <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>N.º Inscrição</th>
+                                    <th>Candidato / Grupo</th>
+                                    <th>Bilhete de Identidade</th>
+                                    <th>Estilo</th>
+                                    <th>Idade</th>
+                                    <th>Província</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if (isset($v_apurados)) {
+                                    if (empty($v_apurados)) {
+                                        ?>
+                                    <div class="alert alert-danger">
+                                        <strong><span class="fa fa-info"></span></strong> Os candidatos apurados serão publicados brevemente.
+                                    </div>
+                                    <?php
+                                }
+                                $cont = 0;
+                                foreach ($v_apurados as $apurado) {
+                                    ?>
+                                <tr>
+                                    <td><?php echo $apurado->getNumero();?></td>
+                                    <td><?= ucfirst(Method::upperGeneral($apurado->getNome())); ?></td>
+                                    <td><?= ucfirst(Method::upperGeneral($apurado->getBi())); ?></td>
+                                    <td><?= ucfirst(Method::upperGeneral($apurado->getEstilo()->getNome())); ?></td>
+                                    <!--<td>-->
+                                      <?php
+                                      /*
+                                      if($apurado->getGenero()==Geral::CONS_GENERO_FEMININO)
+                                      {
+                                        echo "Feminino";
+                                      }
+                                      else if($apurado->getGenero()==Geral::CONS_GENERO_MASCULINO)
+                                      {
+                                        echo "Masculino";
+                                      }
+                                      else
+                                      {
+                                        echo "<i style='color:#f00;'>Não informou.</i>";
+                                      }*/
+                                      ?>
+                                    <!--</td>-->
+                                    <td><?php
+                                    $nascimento = $apurado->getNascimento();
+                                    $data = new DateTime($nascimento );
+                                    $intervalo = $data->diff( new DateTime( date('Y-m-d') ) );
+                                    echo $intervalo->format( '%Y anos' );
+                                     ?></td>
+                                    <td><?= $apurado->getProvincia()->getNome(); ?></td>
+                                </tr>
+                                <?php }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home About Section End -->
+
+    <!-- Contact Section Begin -->
+    <?php
+    include_once 'app/views/public/default/contact.phtml';
+    ?>
+    <!-- // Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <?php
+    include_once 'app/views/public/default/foot.phtml';
+    ?>
+    <!-- // Footer Section End -->
+
+    <!-- Js Plugins -->
+    <?php
+    include_once 'app/views/public/default/javascript.phtml';
+    ?>
+    <!-- // Js Plugins -->
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <?php
+    include_once 'app/views/public/meta.phtml';
+    ?>
+    <title> <?php echo $v_title_page;?></title>
+    <?php
+    include_once 'app/views/public/head.phtml';
+    ?>
+</head>
+<body>
+<div class="loader">
+    <div class="loader-outter"></div>
+    <div class="loader-inner"></div>
+</div>
+
+<!--header start here -->
+<?php
+include_once 'app/views/public/header.phtml';
+?>
+<!--header end here-->
+
+<!--page title section-->
+<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="https://festiangola.co.ao/web-files/assets/img/bg/torneio.png">
+    <div class="overlay_dark"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <div class="inner_cover_erro">
+                    <h3>
+                    <span style="background-color:#FFFFFF;">&nbsp;Página de erro&nbsp;</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="<?= $v_page_url;?>">Início</a>  |  </li>
+                <!--<li><a href="#">JAM</a> |  </li>--> 
+                <li><span>Página de Erro</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--page title section end-->
+
+<!--about section -->
+<section class="pt100 pb100">
+    <div class="container">
+        <div class="section_title">
+            <h3 class="title">
+                <?php
+                if(isset($v_mensagem))
+                {
+                    echo $v_mensagem;
+                }
+                else
+                {
+                    echo "A página que solicitou não existe ou não tem permissão para visualizar esta informação.";
+                }
+                ?>
+            </h3>
+        </div>
+        
+    </div>
+</section>
+<!--about section end -->
+
+<!--footer start -->
+<?php
+include_once 'app/views/public/foot.phtml';
+?>
+<!--footer end -->
+<?php
+include_once 'app/views/public/javascript.phtml';
+?>
+</body>
+</html>

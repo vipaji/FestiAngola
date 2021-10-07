@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Manup Template">
+    <meta name="keywords" content="Manup, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?= $v_title_page; ?></title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <?php
+    include_once 'app/views/public/default/header.phtml';
+    ?>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+
+    <!-- Hero Section End -->
+
+    <!-- Counter Section Begin -->
+    <section class="counter-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="counter-text">
+                        <span>FestiAngola 2021</span>
+                        <h3>Festival Nacional <br />da Canção</h3>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="cd-timer" id="countdown">
+                        <div class="cd-item">
+                            <span>40</span>
+                            <p>Dias</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Horas</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>46</span>
+                            <p>Minutos</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>32</span>
+                            <p>Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Home About Section Begin -->
+    <section class="home-about-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="ha-pic">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/i-about.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ha-text">
+                        <h2 class="txt-success">Sucesso</h2>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="/festival/Home/registar" class="comment-form contact-form" method="POST">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            Nome do candidato
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="Nome" name="nome" required>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            N. Bilhete de Identidade
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="N. Bilhete de Identidade" name="bi" required>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Data de Nascimento
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="date" placeholder="Data de Nascimento" name="nascimento" required>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Província
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <select name="provincia" required>
+                                                <option value="">Província</option>
+                                                <?php
+                                                $v_provincias = (isset($v_provincias) ? ($v_provincias) : (array()));
+                                                foreach ($v_provincias as $provincia) {
+                                                    echo '<option value="' . $provincia->getId() . '">' . ($provincia->getNome()) . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Telefone
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="Telefone" name="telefone" required>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Estilo Musical
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <select name="estilo" required>
+                                                <option value="">Estilo Musical</option>
+                                                <?php
+                                                $v_estilos = (isset($v_estilos) ? ($v_estilos) : (array()));
+                                                foreach ($v_estilos as $estilo) {
+                                                    echo '<option value="' . $estilo->getId() . '">' . ($estilo->getNome()) . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Link da música
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="https:// (Link da música)" name="link" required>
+                                        </div>
+                                        <div class="col-lg-12 text-right">
+                                            <button type="submit" class="site-btn">Inscriver-se</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Home About Section End -->
+
+    <!-- Convidados Section Begin -->
+
+    <!-- Convidados Section End -->
+
+    <!-- Schedule Section Begin -->
+
+    <!-- Schedule Section End -->
+
+    <!-- latest BLog Section Begin -->
+
+    <!-- latest BLog Section End -->
+
+    <!-- Newslatter Section Begin -->
+
+    <!-- Newslatter Section End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>FestiAngola 2021</h2>
+                        <p></p>
+                    </div>
+                    <div class="cs-text">
+                        <div class="ct-address">
+                            <span>Endereço:</span>
+                            <p>Urbanização Boa Vida<br />Luanda</p>
+                        </div>
+                        <ul>
+                            <li>
+                                <span>Telefone:</span>
+                                +244 222 570 700
+                            </li>
+                            <li>
+                                <span>Email:</span>
+                                geral@festiangola.co.ao
+                            </li>
+                        </ul>
+                        <div class="ct-links">
+                            <span>Website:</span>
+                            <p>https://festiangola.co.ao</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="cs-map">
+                        <!--<iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.38789495531!2d-118.19465514866786!3d34.03523211493029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cf71ad83ff9f%3A0x518b28657f4543b7!2sEast%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1579763856144!5m2!1sen!2sbd"
+                            height="400" style="border:0;" allowfullscreen=""></iframe>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="partner-logo owl-carousel">
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-1.png" alt="">
+                    </div>
+                </a>
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-2.png" alt="">
+                    </div>
+                </a>
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-3.png" alt="">
+                    </div>
+                </a>
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-4.png" alt="">
+                    </div>
+                </a>
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-5.png" alt="">
+                    </div>
+                </a>
+                <a href="#" class="pl-table">
+                    <div class="pl-tablecell">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/partner-logo/logo-6.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-text">
+                        <div class="ft-logo">
+                            <a href="#" class="footer-logo"><img src="https://festiangola.co.ao/web-files/assets/img/footer-logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li><a href="#">Início</a></li>
+                            <li><a href="#">O Festival</a></li>
+                            <li><a href="#">Agenda</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contactos</a></li>
+                        </ul>
+                        <div class="copyright-text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>
+                                    document.write(new Date().getFullYear());
+                                </script> Todos os direitos reservados | Made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://mrvipaji.ao" target="_blank">MR. VIPAJI</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="ft-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="https://festiangola.co.ao/web-files/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/bootstrap.min.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/jquery.countdown.min.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/jquery.slicknav.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/owl.carousel.min.js"></script>
+    <script src="https://festiangola.co.ao/web-files/assets/js/main.js"></script>
+</body>
+
+</html>

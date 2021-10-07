@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page; ?></title>
+
+  <?php
+  include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+    include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-indigo">
+
+      <!-- Brand Logo -->
+      <?php
+      include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context; ?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-6">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-music"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Estilos musicais</span>
+                  <span class="info-box-number">
+                    <?= $v_estilos; ?>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-6">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Candidatos</span>
+                  <span class="info-box-number"><?= $v_candidatos; ?></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+
+          <!-- /.row -->
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- MAP & BOX PANE -->
+
+
+
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="card">
+                <div class="card-header border-transparent">
+                  <h3 class="card-title">Últimas Inscrições</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <!--
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                    -->
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Candidato</th>
+                          <th>Idade</th>
+                          <th>Província</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        if (isset($v_Ultimoscandidatos)) {
+                          if (empty($v_Ultimoscandidatos)) {
+                        ?>
+                            <div class="alert alert-danger">
+                              <strong><span class="fa fa-info"></span></strong> Até o momento não temos inscrições.
+                            </div>
+                          <?php
+                          }
+                          $cont = 0;
+                          foreach ($v_Ultimoscandidatos as $inscricao) {
+                          ?>
+                            <tr>
+                              <td><a href="/Candidato/ver/<?php echo base64_encode("id") . '/' . base64_encode($inscricao->getId()) ?>"><i class="fa fa-eye fa-1x"></i> <?= $inscricao->getNumero() ?></a></td>
+                              <td><?= ucfirst(Method::upperGeneral($inscricao->getNome())); ?></td>
+                              <td>
+                                <?php
+                                $nascimento = $inscricao->getNascimento();
+                                $data = new DateTime($nascimento);
+                                $intervalo = $data->diff(new DateTime(date('Y-m-d')));
+                                echo $intervalo->format('%Y anos');
+                                ?>
+                              </td>
+                              <td><?= ucfirst(Method::upperGeneral($inscricao->getProvincia()->getNome())); ?></td>
+                            </tr>
+                        <?php }
+                        } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                <!-- /.card-body -->
+                <?php
+                if (isset($v_Ultimoscandidatos)) {
+                  if (!empty($v_Ultimoscandidatos)) {
+                ?>
+                    <div class="card-footer clearfix">
+                      <a href="/Candidato" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                    </div>
+                <?php }
+                } ?>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-4">
+              <!-- PRODUCT LIST -->
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Publicações recentes</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <!--
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    -->
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <ul class="products-list product-list-in-card pl-2 pr-2">
+                    <?php
+                    if (isset($v_Ultimasblog)) {
+                      if (empty($v_Ultimasblog)) {
+                    ?>
+                        <div class="alert alert-danger">
+                          <strong><span class="fa fa-info"></span></strong> Até o momento não temos publicações adicionadas.
+                        </div>
+                      <?php
+                      }
+                      foreach ($v_Ultimasblog as $blog) {
+                      ?>
+                        <li class="item">
+                          <div class="product-img">
+                            <?php
+                            if (isset($blog)) {
+                              $foto = $blog->getFoto();
+                              if (!$blog->getFoto() == null) {
+                                echo '<img src="' . Geral::DIR_IMG_BLOG . $foto . '" alt="Foto de ' . $blog->getTitulo() . '" title="Foto de ' . $blog->getTitulo() . '" />';
+                              } else {
+                                ?>
+                                <img src="https://festiangola.co.ao/web-files/adm/dist/img/default-150x150.png" alt="Foto de <?= $blog->getTitulo()?>" class="img-size-50">
+                                <?php
+                              }
+                            }
+                            ?>
+                          </div>
+                          <div class="product-info">
+                            <a href="/Blog/ver/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>" class="product-title"><?= ucfirst(Method::upperGeneral($blog->getTitulo())); ?>
+                              <span class="product-description">
+                                <?= $blog->getData(); ?>
+                                <?php //substr($blog->getTitulo(), 0, 16); ?>
+                              </span>
+                          </div>
+                        </li>
+                    <?php }
+                    } ?>
+                  </ul>
+                </div>
+                <!-- /.card-body -->
+                <!--
+                <div class="card-footer text-center">
+                  <a href="javascript:void(0)" class="uppercase">Ver todas</a>
+                </div>
+                -->
+                <?php
+                if (isset($v_Ultimasblog)) {
+                  if (!empty($v_Ultimasblog)) {
+                ?>
+                    <div class="card-footer clearfix">
+                      <a href="/Blog/" class="btn btn-sm btn-secondary float-right">Ver todas</a>
+                    </div>
+                <?php
+                  }
+                }
+                ?>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+  include_once 'app/views/public/adm/javascript.phtml';
+  ?>
+</body>
+
+</html>

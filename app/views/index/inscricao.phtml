@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <?php
+    include_once 'app/views/public/default/head.phtml';
+    ?>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <?php
+    include_once 'app/views/public/default/header.phtml';
+    ?>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+
+    <!-- Hero Section End -->
+
+    <!-- Counter Section Begin -->
+    <section class="counter-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="counter-text">
+                        <span>FestiAngola 2021</span>
+                        <h3>Festival Nacional <br />da Canção Patriótica</h3>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="cd-timer" id="countdown">
+                        <div class="cd-item">
+                            <span>40</span>
+                            <p>Dias</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Horas</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>46</span>
+                            <p>Minutos</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>32</span>
+                            <p>Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Home About Section Begin -->
+    <section class="home-about-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="ha-pic">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/i-about.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ha-text">
+                        <h2>Ficha de Inscrição 2021</h2>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form class="comment-form contact-form" id="mail-express" autocomplete="off">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            Nome do candidato ou Grupo
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="Nome" name="nome" id="nome" required>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            N. Bilhete de Identidade do candidato ou líder do grupo
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="N. Bilhete de Identidade" name="bi" id="bi">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            E-mal
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="email" placeholder="E-mail" name="email" id="email">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Data de Nascimento
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="date" placeholder="Data de Nascimento" name="nascimento" id="nascimento">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Género
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <select name="genero" id="genero">
+                                                <option value="">Género</option>
+                                                <option value="<?= Geral::CONS_GENERO_FEMININO ?>">Feminino</option>
+                                                <option value="<?= Geral::CONS_GENERO_MASCULINO ?>">Masculino</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Província
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <select name="provincia" id="provincia">
+                                                <option value="">Província</option>
+                                                <?php
+                                                $v_provincias = (isset($v_provincias) ? ($v_provincias) : (array()));
+                                                foreach ($v_provincias as $provincia) {
+                                                    echo '<option value="' . $provincia->getId() . '">' . ($provincia->getNome()) . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Telefone
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="Telefone" name="telefone" id="telefone">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Estilo Musical
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <select name="estilo" required id="estilo">
+                                                <option value="">Estilo Musical</option>
+                                                <?php
+                                                $v_estilos = (isset($v_estilos) ? ($v_estilos) : (array()));
+                                                foreach ($v_estilos as $estilo) {
+                                                    echo '<option value="' . $estilo->getId() . '">' . ($estilo->getNome()) . '</option> ';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            Link da música para download
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input type="text" placeholder="https:// (Link da música para download)" name="link" id="link">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <!-- Alertas -->
+                                            <div class="alert alert-success alert-dismissable" role="alert" id="divSucesso" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <span id="sucesso"></span>
+                                            </div>
+                                            <div class="alert alert-warning alert-dismissable" role="alert" id="divBiExistente" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                Já existe uma inscrição com o número de bilhete de identidade inserido.
+                                            </div>
+
+                                            <div class="alert alert-warning alert-dismissable" role="alert" id="divError" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                Lamentamos, pois não foi possível enviar a sua inscrição.
+                                            </div>
+
+                                            <div class="alert alert-warning alert-dismissable" role="alert" id="divIdade" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                Para ser <b>candidato</b> deve ter idade entre <b>18 a 25 anos</b> de idade.
+                                            </div>
+
+                                            <div class="alert alert-warning alert-dismissable" role="alert" id="divVazio" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                Por favor preencher o campo em falta por favor.
+                                            </div>
+                                            
+                                            <div class="alert alert-warning alert-dismissable" role="alert" id="divEncerrado" style="display: none;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                Lamentamos informá-lo que as inscrições estão encerradas.
+                                            </div>
+
+                                            <div class="alert alert-danger" id="label-erro" style="display:none;">
+                                                <strong></strong> <span id="info-erro"></span> <a href="#" class="alert-link"></a>
+                                            </div>
+                                            <!-- // Alertas-->
+                                            <div id="processando" style="text-align:center; display:none;">
+                                                <img src="https://festiangola.co.ao/web-files/assets/img/loader.gif" alt="">
+                                            </div>
+                                            <div class="col-lg-12 text-right">
+                                                <button id="submit-candidatura" type="button" class="site-btn">Inscrever-se</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home About Section End -->
+
+    <!-- Contact Section Begin -->
+    <?php
+    include_once 'app/views/public/default/contact.phtml';
+    ?>
+    <!-- // Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <?php
+    include_once 'app/views/public/default/foot.phtml';
+    ?>
+    <!-- // Footer Section End -->
+
+    <!-- Js Plugins -->
+    <?php
+    include_once 'app/views/public/default/javascript.phtml';
+    ?>
+    <!-- // Js Plugins -->
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Manup Template">
+	<meta name="keywords" content="Manup, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title><?= $v_title_page; ?></title>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,800,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+
+
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/web-files/assets/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/web-files/assets/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="https://festiangola.co.ao/web-files/assets/css/style.css" type="text/css">
+</head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header Section Begin -->
+	<?php
+	include_once 'app/views/public/default/header.phtml';
+	?>
+	<!-- Header End -->
+
+	<!-- Hero Section Begin -->
+
+	<!-- Hero Section End -->
+
+	<!-- Counter Section Begin -->
+	<section class="counter-section bg-gradient">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="counter-text">
+						<span>FestiAngola 2021</span>
+						<h3>Festival Nacional <br />da Canção Patriótica</h3>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="cd-timer" id="countdown">
+						<div class="cd-item">
+							<span>40</span>
+							<p>Dias</p>
+						</div>
+						<div class="cd-item">
+							<span>18</span>
+							<p>Horas</p>
+						</div>
+						<div class="cd-item">
+							<span>46</span>
+							<p>Minutos</p>
+						</div>
+						<div class="cd-item">
+							<span>32</span>
+							<p>Segundos</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Counter Section End -->
+
+	<!-- Home About Section Begin -->
+	<section class="home-about-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="ha-pic">
+						<img src="https://festiangola.co.ao/web-files/assets/img/i-about.jpg" alt="">
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="ha-text">
+						<h2>Página de erro</h2>
+						<div class="row">
+							<div class="col-lg-12">
+								<?php
+								if (isset($v_mensagem)) {
+									echo "<h4 style='color:#f00;'><span class='fa fa-info'></span> ".$v_mensagem." </h4>";
+								} else {
+								?>
+									A página que solicitou não existe ou não tem permissão para visualizar esta informação.
+								<?php
+								}
+								?>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Home About Section End -->
+
+	<!-- Contact Section Begin -->
+    <?php
+    include_once 'app/views/public/default/contact.phtml';
+    ?>
+    <!-- // Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <?php
+    include_once 'app/views/public/default/foot.phtml';
+    ?>
+    <!-- // Footer Section End -->
+
+    <!-- Js Plugins -->
+    <?php
+    include_once 'app/views/public/default/javascript.phtml';
+    ?>
+    <!-- // Js Plugins -->
+</body>
+
+</html>

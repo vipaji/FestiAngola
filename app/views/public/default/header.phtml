@@ -1,0 +1,88 @@
+<header class="header-section">
+        <div class="container">
+            <div class="logo">
+                <a href="/Index/">
+                    <img src="https://festiangola.co.ao/web-files/assets/img/logo.png" alt="FestiAngola 2021 - Festival Nacional da Canção" style="width: 40%;">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <nav class="mainmenu mobile-menu">
+                    <?php
+                    if($v_page == "home")
+                    {
+                        ?>
+                        <ul>
+                        <li class="active"><a href="/Index/">Início</a></li>
+                        <li><a href="/Index/festival">O Festival</a></li>
+                        <li><a href="/Index/regulamento">Regulamento</a></li>
+                        <li><a href="/Index/contacto">Contactos</a></li>
+                    </ul>
+                    <?php
+                    }
+                    else if($v_page == "festival")
+                    {
+                        ?>
+                        <ul>
+                        <li><a href="/Index/">Início</a></li>
+                        <li class="active"><a href="/Index/festival">O Festival</a></li>
+                        <li><a href="/Index/regulamento">Regulamento</a></li>
+                        <li><a href="/Index/contacto">Contactos</a></li>
+                    </ul>
+                    <?php
+                    }
+                    else if($v_page == "regulamento")
+                    {
+                        ?>
+                        <ul>
+                        <li><a href="/Index/">Início</a></li>
+                        <li><a href="/Index/festival">O Festival</a></li>
+                        <li class="active"><a href="/Index/regulamento">Regulamento</a></li>
+                        <li><a href="/Index/contacto">Contactos</a></li>
+                    </ul>
+                    <?php
+                    }
+                    else if($v_page == "contacto")
+                    {
+                        ?>
+                        <ul>
+                        <li><a href="/Index/">Início</a></li>
+                        <li><a href="/Index/festival">O Festival</a></li>
+                        <li><a href="/Index/regulamento">Regulamento</a></li>
+                        <li class="active"><a href="/Index/contacto">Contactos</a></li>
+                    </ul>
+                    <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <ul>
+                        <li><a href="/Index/">Início</a></li>
+                        <li><a href="/Index/festival">O Festival</a></li>
+                        <li><a href="/Index/regulamento">Regulamento</a></li>
+                        <li><a href="/Index/contacto">Contactos</a></li>
+                    </ul>
+                    <?php
+                    }
+                    ?>
+                </nav>
+                <?php
+                $encerramento = '31-08-2021';
+                
+                // Comparando as Datas
+                if((strtotime(date('d-m-Y'))) > (strtotime($encerramento)))
+                {
+                    ?>
+                    <a href="/Index/apurado" class="primary-btn top-btn"><i class="fa fa-star"></i> Candidatos apurados</a>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <a href="/Index/inscricao" class="primary-btn top-btn"><i class="fa fa-sign-in"></i> Inscrever-se</a>
+                    <?php
+                }
+                ?>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>

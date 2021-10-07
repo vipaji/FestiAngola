@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <?php
+    include_once 'app/views/public/default/head.phtml';
+    ?>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <?php
+    include_once 'app/views/public/default/header.phtml';
+    ?>
+    <!-- // Header End -->
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2><?= $v_entity->getTitulo() ?></h2>
+                        <div class="bt-option">
+                            <a href="/Index/">Início</a>
+                            <span>Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+
+    <!-- Blog Details Hero Section Begin -->
+    <?php
+    if (!$v_entity->getFoto() == null) {
+    ?>
+        <section class="blog-hero-section set-bg" data-setbg="<?= Geral::DIR_IMG_BLOG . $v_entity->getFoto() ?>">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bh-text">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php
+    } else {
+    ?>
+        <section class="blog-hero-section set-bg" data-setbg="https://festiangola.co.ao/web-files/assets/img/hero.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bh-text">
+                            <!--<a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><i class="fa fa-play"></i></a>-->
+                            <h2><span style="background-color: #EB0E0E;">&nbsp;&nbsp;<?= $v_entity->getTitulo() ?>&nbsp;&nbsp;</span></h2>
+                            <ul>
+                                <span style="background-color: #ffffff;">&nbsp;&nbsp;<?= $v_entity->getData() ?>&nbsp;&nbsp;</span>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php
+    }
+    ?>
+    <!-- Blog Details Hero Section End -->
+
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="bd-text">
+                        <div class="bd-more-text second-text">
+                            <!--<h4><?= $v_entity->getTitulo() ?></h4>-->
+                        </div>
+                        <div class="bd-quote">
+                            <p style="text-align: justify;"><?= $v_entity->getTexto() ?></p>
+                            <img src="img/quote-left.png" alt="">
+                        </div>
+                        <div class="bd-more-pic">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="<?= Geral::DIR_IMG_BLOG . $v_entity->getFoto() ?>" alt="">
+                                </div>
+                                <!--
+                                <div class="col-md-6">
+                                    <img src="img/blog/blog-details/blog-more-2.jpg" alt="">
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div class="bd-tag-share">
+                            <div class="tag">
+                                Publicado em: <?= $v_entity->getData() ?>
+                            </div>
+                            <div class="s-share">
+                                <span>Partilhar:</span>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Section End -->
+
+    <!-- Related Post Section Begin -->
+    <section class="related-post-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Mais publicações</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <?php
+                if (isset($v_blogs)) {
+                    if (empty($v_blogs)) {
+                ?>
+                        <div class="alert alert-warning">
+                            <strong><span class="fa fa-info"></span></strong> De momento, não temos mais outras novidades.
+                        </div>
+                    <?php
+                    }
+                    $cont = 0;
+                    foreach ($v_blogs as $blog) {
+                    ?>
+                        <div class="col-md-4">
+                            <?php
+                            if (!$blog->getFoto() == null) {
+                            ?>
+                                <div class="blog-item set-bg" data-setbg="<?= Geral::DIR_IMG_BLOG . $blog->getFoto() ?>">
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="blog-item set-bg" data-setbg="<?= Geral::DIR_IMG_BLOG_PADRAO ?>">
+                                    <?php
+                                }
+                                    ?>
+                                    <div class="bi-tag bg-gradient">Blog</div>
+                                    <div class="bi-text">
+                                        <h5 style="background-color: #000000; padding:10px;"><a href="/Index/ler/<?php echo base64_encode("id") . '/' . base64_encode($blog->getId()) ?>"><?= $blog->getTitulo() ?></a></h5>
+                                        <span><i class="fa fa-clock-o"></i> <?= $blog->getData() ?></span>
+                                    </div>
+                                    </div>
+                                </div>
+                        <?php
+                    }
+                }
+                        ?>
+
+                        </div>
+            </div>
+    </section>
+    <!-- Related Post Section End -->
+
+    <!-- Contact Section Begin -->
+    <?php
+    include_once 'app/views/public/default/contact.phtml';
+    ?>
+    <!-- // Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <?php
+    include_once 'app/views/public/default/foot.phtml';
+    ?>
+    <!-- // Footer Section End -->
+
+    <!-- Js Plugins -->
+    <?php
+    include_once 'app/views/public/default/javascript.phtml';
+    ?>
+    <!-- // Js Plugins -->
+</body>
+
+</html>
