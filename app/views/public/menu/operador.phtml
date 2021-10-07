@@ -1,0 +1,69 @@
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+    <li class="nav-item has-treeview menu-open">
+      <a href="#" class="nav-link active">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+          Dashboard
+          <i class="right "></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/Dashboard/" class="nav-link active">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Principal</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav-header">GESTÃO</li>
+    <li class="nav-item">
+      <a href="/Blog" class="nav-link">
+        <i class="nav-icon fas fa-microphone"></i>
+        <p>
+          Blog
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/Candidato" class="nav-link">
+        <i class="nav-icon fas fa-users"></i>
+        <p>
+          Candidatos
+        </p>
+      </a>
+    </li>
+        
+  
+    <li class="nav-header"><b>DEFINIÇÔES</b></li>
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          Utilizador
+          <i class="fas fa-angle-left right"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/Utilizador/perfil/<?php echo base64_encode("id") . '/' . base64_encode($v_userInfo->getId()) ?>" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Perfil</p>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="/Login/logout" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Sair</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

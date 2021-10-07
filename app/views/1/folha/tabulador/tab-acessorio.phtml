@@ -1,0 +1,34 @@
+<a class="btn btn-primary" data-toggle="modal" data-target="#addacessorio"  style="cursor:pointer;"><i class="fa fa-plus m-right-xs"></i> Acessórios</a>
+<hr>
+<table id="example2" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            if (isset($v_acessoriosFolha)) {
+                if (empty($v_acessoriosFolha)) {
+                ?>
+        <div class="alert alert-danger">
+            <strong><span class="fa fa-info"></span></strong> Folha de Obra sem Acessórios.
+        </div>
+        <?php
+                }
+                $cont = 0;
+                foreach ($v_acessoriosFolha as $acessorio) {
+                ?>
+        <tr>
+            <td><?php echo (++$cont);?></td>
+            <td><?= $acessorio->getAcessorio()->getNome()?></td>
+            <td style="text-align:center;">
+            <a href="<?=$v_page_url ?>eliminarAcessorio/<?php echo base64_encode("id_acessorio") . '/' . base64_encode($acessorio->getId()) ?>/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>/" class="btn btn-danger btn-circle" title="Remover">X</a>
+            </td>
+        </tr>
+        <?php }
+    } ?>
+    </tbody>
+</table>

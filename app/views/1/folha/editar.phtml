@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><?= $v_title_page;?></title>
+
+  <?php
+    include_once 'app/views/public/adm/head.phtml';
+  ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <?php
+      include_once 'app/views/public/adm/topNavigation.phtml';
+    ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-light-indigo">
+
+      <!-- Brand Logo -->
+      <?php
+        include_once 'app/views/public/adm/logo.phtml';
+      ?>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <?php
+        include_once 'app/views/public/adm/userInfo.phtml';
+        ?>
+        <!-- Sidebar Menu -->
+        <?php
+        include_once 'app/views/public/menuLateral.phtml';
+        ?>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark"><?= $v_page_context;?></h1>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Main row -->
+          <div class="row">
+            <!-- / Corpo da página INÍCIO -->
+
+            <div class="col-6">
+              <div class="card">
+
+              <form role="form" id="formPerfil" method="POST" action="<?= $v_page_url;?>actualizar">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input type="text" name="numero" class="form-control" id="numero" placeholder="Número" value="<?= $v_entity->getNumero(); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="veiculo">Veículo</label>
+                    <input type="hidden" value="<?= $v_entity->getID();?>" name="id_folha">
+                    <select id="veiculo" name="veiculo" class="form-control" required>
+                    <?php
+                      $v_veiculos = (isset($v_veiculos) ? ($v_veiculos) : (array()));
+                        foreach ($v_veiculos as $veiculo) {
+                          echo '<option value="' . $veiculo->getId() . '" ' . ($veiculo->getId() == $v_entity->getVeiculo()->getMatricula() ? 'selected' : '') . '>' . $veiculo->getMatricula() . '</option> ';
+                        }
+                    ?>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="area">Área de serviço</label>
+                    <input type="text" name="area" class="form-control" id="area" placeholder="Área de serviço" value="<?= $v_entity->getAreaServico(); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="area">Quilometragem (Km/h)</label>
+                    <input type="text" name="km" class="form-control" id="km" placeholder="Quilometragem Km/h" value="<?= $v_entity->getKm(); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="avaria">Avaria</label>
+                    <textarea name="avaria" rows="2" class="form-control" id="avaria" placeholder="Avaria"><?= $v_entity->getAvaria(); ?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="reparacao">Reparação</label>
+                    <textarea name="reparacao" rows="2" class="form-control" id="reparacao" placeholder="Reparação"><?= $v_entity->getReparacao(); ?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="entreda">Data de Entrada</label>
+                    <input type="date" name="entrada" class="form-control" id="entrada" placeholder="Data de entrada" value="<?= $v_entity->getDataEntrada(); ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="saida">Data de Saída</label>
+                    <input type="date" name="saida" class="form-control" id="saida" placeholder="Data de saída" value="<?= $v_entity->getDataSaida(); ?>">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <!--<div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Gravar <?= $v_page_context;?></button>
+                </div>-->
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                    <a href="<?=$v_page_url ?>" class="btn btn-default btn-circle" title="Voltar"><i
+                        class="fa fa-chevron-left"></i><strong> Voltar</strong></a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                  </div>
+                </div>
+              </form>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="card">
+                <div class="card-body">
+                      <!-- lateral -->
+                      <div class="col-12 col-sm-12">
+            <div class="card card-primary card-outline card-outline-tabs">
+              <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="acessorios-tab" data-toggle="pill" href="#tab-acessorios" role="tab" aria-controls="tab-acessorios" aria-selected="true">Acessórios</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Documentos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Peça</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Funcionários</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                  <div class="tab-pane fade show active" id="tab-acessorios" role="tabpanel" aria-labelledby="acessorios-tab">
+                     Acessórios
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                     Documentos
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
+                     Peça
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+                     Funcionários
+                  </div>
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+                      <!--// lateral -->
+                </div>
+                  
+              </div>
+            </div>
+
+            <!-- / Corpo da página FIM -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?php
+    include_once 'app/views/public/adm/foot.phtml';
+    ?>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <?php
+    include_once 'app/views/public/adm/javascript.phtml';
+    include_once 'app/views/public/adm/datatables.phtml';
+  ?>
+</body>
+
+</html>

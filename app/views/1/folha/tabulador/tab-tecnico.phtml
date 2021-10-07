@@ -1,0 +1,36 @@
+<a class="btn btn-primary" data-toggle="modal" data-target="#addtecnico" style="cursor:pointer;"><i class="fa fa-plus m-right-xs"></i> Técnicos</a>
+<hr>
+<table id="example2" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Função</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            if (isset($v_tecnicosFolha)) {
+                if (empty($v_tecnicosFolha)) {
+                ?>
+        <div class="alert alert-danger">
+            <strong><span class="fa fa-info"></span></strong> Folha de Obra sem Técnico.
+        </div>
+        <?php
+                }
+                $cont = 0;
+                foreach ($v_tecnicosFolha as $tecnico) {
+                ?>
+        <tr>
+            <td><?php echo (++$cont);?></td>
+            <td><?= $tecnico->getTecnico()->getNome()?></td>
+            <td><?= $tecnico->getTecnico()->getFuncao()?></td>
+            <td style="text-align:center;">
+            <a href="<?=$v_page_url ?>eliminarTecnico/<?php echo base64_encode("id_tecnico") . '/' . base64_encode($tecnico->getId()) ?>/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>/" class="btn btn-danger btn-circle" title="Remover">X</a>
+            </td>
+        </tr>
+        <?php }
+    } ?>
+    </tbody>
+</table>

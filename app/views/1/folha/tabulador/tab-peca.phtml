@@ -1,0 +1,46 @@
+<a class="btn btn-primary" data-toggle="modal" data-target="#addpeca" style="cursor:pointer;"><i class="fa fa-plus m-right-xs"></i> Peças</a>
+<hr>
+<table id="example2" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Peça</th>
+            <th>Quant.</th>
+            <th>Preço</th>
+            <?php
+            if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR)
+            {?>
+            <th>Opções</th>
+            <?php } ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if (isset($v_pecasFolha)) {
+            if (empty($v_pecasFolha)) {
+        ?>
+                <div class="alert alert-danger">
+                    <strong><span class="fa fa-info"></span></strong> Folha de Obra sem Peças.
+                </div>
+            <?php
+            }
+            $cont = 0;
+            foreach ($v_pecasFolha as $peca) {
+            ?>
+                <tr>
+                    <td><?php echo (++$cont); ?></td>
+                    <td><?= $peca->getPeca()?></td>
+                    <td><?= $peca->getQuantidade()?></td>
+                    <td><?= number_format($peca->getPreco(),2,",",".");?></td>
+                    <?php
+                    if(strtolower($v_userInfo->getPerfil()->getNome()) == Geral::CONS_PERFIL_ADMINISTRADOR)
+                    { ?>
+                    <td style="text-align:center;">
+                    <a href="<?=$v_page_url ?>eliminarPeca/<?php echo base64_encode("id_peca") . '/' . base64_encode($peca->getId()) ?>/<?php echo base64_encode("id") . '/' . base64_encode($v_entity->getId()) ?>/" class="btn btn-danger btn-circle" title="Remover">X</a>
+                    </td>
+                    <?php } ?>
+                </tr>
+        <?php }
+        } ?>
+    </tbody>
+</table>

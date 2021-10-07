@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <?php
+    include_once 'app/views/public/default/head.phtml';
+    ?>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <?php
+      include_once 'app/views/public/default/header.phtml';
+    ?>
+    <!-- // Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section set-bg" data-setbg="https://festiangola.co.ao/web-files/assets/img/hero.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="hero-text">
+                        <span>17 de Setembro, Luanda</span>
+                        <h2>Festival Nacional<br />da Canção Patriótica</h2>
+                        <a href="#" class="primary-btn"><?= $v_inscritos?> inscritos</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <img src="https://festiangola.co.ao/web-files/assets/img/hero-right.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Counter Section Begin -->
+    <section class="counter-section bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="counter-text">
+                        <span>FestiAngola 2021</span>
+                        <h3>Festival Nacional <br />da Canção Patriótica</h3>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="cd-timer" id="countdown">
+                        <div class="cd-item">
+                            <span>40</span>
+                            <p>Dias</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Horas</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>46</span>
+                            <p>Minutos</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>32</span>
+                            <p>Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Counter Section End -->
+
+    <!-- Home About Section Begin -->
+    <section class="home-about-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="ha-pic">
+                        <img src="https://festiangola.co.ao/web-files/assets/img/h-about.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ha-text">
+                        <h2>FESTIANGOLA 2021</h2>
+                        <p><strong>O FestiAngola</strong> é um evento do âmbito nacional organizado pelo <strong>Grupo Boa Vida</strong>, que conta com as produções de <strong>AM Entertainment<strong> e </strong>Top Music Angola</strong>.</p>
+                        <p><strong>O FestiAngola</strong> é o primeiro Festival de Canção dos estilos <strong>Semba</strong>, <strong>Kizomba</strong> e <strong>Kuduro</strong>, de âmbito nacional que visa projectar e lançar novos talentos, podendo nele participar jovens das <strong>18 províncias de Angola</strong> dos <strong>18</strong> aos <strong>35 anos</strong> de idade.</p>
+                        <p>Para a primeira edição, o <strong>FestiAngola</strong> será realizado no dia <strong>17 de Setembro</strong> em <strong>Formato de TV</strong>, tendo como a Cadeia Televisiva Oficial a <strong>TPA</strong>.</p>
+                        <p>O <strong>FestiAngola</strong> conta com os apoios institucionais com o <strong>Ministério da Cultura, Turismo e Ambiente, Ministério das Telecomunicações, Tecnologias de Informação e Comunicação Social</strong>, da <strong>União Nacional dos Compositores de Angola - UNAC</strong> e da <strong>Sociedade dos Direitos de Autor de Angola - SADIA</strong>.</p>
+
+                        <ul>
+                            <li><span class="icon_check"></span> Letra da Canção</li>
+                            <li><span class="icon_check"></span> Melodia</li>
+                            <li><span class="icon_check"></span> Harmonia</li>
+                            <li><span class="icon_check"></span> Afinação</li>
+                        </ul>
+                        <a href="/festival/Home/regulamento/" class="ha-btn">Ler regulamento</a> / <a href="/festival/Home/inscricao/" class="ha-btn">Inscrever-se</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Home About Section End -->
+
+    <!-- Juri Section Begin -->
+    <?php
+    include_once 'app/views/public/default/juri.phtml';
+    ?>
+    <!-- // Juri Section End -->
+
+    <!-- Schedule Section Begin -->
+    <?php
+    include_once 'app/views/public/default/agenda.phtml';
+    ?>
+    <!-- Schedule Section End -->
+
+    <!-- latest BLog Section Begin -->
+    <?php
+    include_once 'app/views/public/default/blog.phtml';
+    ?>
+    <!-- // latest BLog Section End -->
+
+    <!-- Newslatter Section Begin -->
+    <section class="newslatter-section">
+        <div class="container">
+            <div class="newslatter-inner set-bg" data-setbg="https://festiangola.co.ao/web-files/assets/img/newslatter-bg.jpg">
+                <div class="ni-text">
+                    <h3>Inscrições</h3>
+                    <?php
+                    if($v_inscritos==0)
+                    {
+                        ?>
+                        <p>Sê tu o primeiro inscrito.</p>
+                        <?php
+                    }
+                    else
+                    {
+                        ?>
+                        <p>Junta-te aos <strong><?= $v_inscritos?></strong> inscritos. Inscrições entre 30 de Julho á 31 de Agosto.</p>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <form action="#" class="ni-form">
+                    <button type="button" onclick="location='/festival/Home/inscricao/';">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Newslatter Section End -->
+
+    <!-- Contact Section Begin -->
+    <?php
+    include_once 'app/views/public/default/contact.phtml';
+    ?>
+    <!-- // Contact Section End -->
+
+    <!-- Footer Section Begin -->
+    <?php
+    include_once 'app/views/public/default/foot.phtml';
+    ?>
+    <!-- // Footer Section End -->
+
+    <!-- Js Plugins -->
+    <?php
+    include_once 'app/views/public/default/javascript.phtml';
+    ?>
+    <!-- // Js Plugins -->
+</body>
+
+</html>
